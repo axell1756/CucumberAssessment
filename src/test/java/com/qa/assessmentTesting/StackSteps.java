@@ -56,14 +56,12 @@ public class StackSteps {
 
 		assertEquals("Is not correct URL - " + driver.getCurrentUrl() + ". Expected - " + Const.CREATE_USER_URL,
 				Const.CREATE_USER_URL, driver.getCurrentUrl());
-		StackRunner.report.endTest(test);
 
 	}
 
 	@When("^the User details are entered on the Create UserScreen$")
 	public void the_User_details_are_entered_on_the_Create_UserScreen() throws Throwable {
 		CreateUserPage newUser = PageFactory.initElements(driver, CreateUserPage.class);
-		test = StackRunner.report.startTest("New user - entering details");
 
 		newUser.createNewUser(driver, test, "gniteckm", "password", "Mark Gniteckis", "gniteckm@test.com");
 
@@ -80,7 +78,6 @@ public class StackSteps {
 		}
 
 		assertEquals("Wrong details entered", "gniteckm@test.com", newUser.emailField.getAttribute("value"));
-		StackRunner.report.endTest(test);
 
 	}
 
@@ -104,6 +101,7 @@ public class StackSteps {
 
 		}
 
+		StackRunner.report.endTest(test);
 	}
 
 	@Then("^the Username should be visible on the UsersScreen$")
@@ -164,7 +162,7 @@ public class StackSteps {
 		UsersPage users = PageFactory.initElements(driver, UsersPage.class);
 
 		assertTrue("User doesn't exist", users.checkForUser(driver, test, arg1));
-		StackRunner.report.endTest(test);
+
 	}
 
 	@When("^the \"([^\"]*)\" username is clicked on the UserScreen$")
@@ -188,6 +186,7 @@ public class StackSteps {
 				Helpers.takeScreenshot(driver, Const.SCREENSHOT_PATH + "Display - " + arg1 + ".png")));
 		
 		assertEquals("Wrong username", "Jenkins User Id: " + arg1, details.username.getText());
+		StackRunner.report.endTest(test);
 	}
 
 	@Given("^the \"([^\"]*)\" Username's profile page has been loaded$")

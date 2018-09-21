@@ -43,8 +43,5 @@ public class UsersPage {
 		action.moveToElement(user).click().perform();
 		
 	}
-	
-	public void configuration(WebDriver driver, ExtentTest test, String username) {
-		
-	}
+
 }
